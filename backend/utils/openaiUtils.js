@@ -1,4 +1,4 @@
-const openai = require('openai');
+const openai = require('@openai/api');
 const openAiInstance = new openai(process.env.OPENAI_API_KEY);
 
 
