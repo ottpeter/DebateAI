@@ -18,4 +18,8 @@ router.post('/start', (req, res) => {
   else res.json({error: error})
 });
 
+router.get('/list-all', (req, res) => {
+  res.send(rooms);
+})
+
 module.exports = router
