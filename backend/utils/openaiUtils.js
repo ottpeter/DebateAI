@@ -1,9 +1,13 @@
-const { createAI } = require('openai');
-const openAiInstance = createAI({apiKey: process.env.OPENAI_API_KEY});
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 async function getAnswer(prompt) {
   try {
-    const completion = await openAiInstance.createCompletion({
+    const completion = await openai.createCompletion({
       engine: "text-davinci-003",
       prompt: prompt,
       temperature: 0.6,
