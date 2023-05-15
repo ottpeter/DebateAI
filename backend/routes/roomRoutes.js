@@ -4,7 +4,15 @@ const { hello } = require('../utils/helloUtil');
 
 
 router.post('/start', (req, res) => {
-  console.log(req.body)
+  const roomName = req.body.roomName;
+  const topic = req.body.topic;
+
+  const resultObj = {
+    roomName,
+    topic
+  }
+
+  res.json(resultObj);
 });
 
 module.exports = router
