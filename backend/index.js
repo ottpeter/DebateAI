@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const bodyParser = require('body-parser')
 require('dotenv').config();
 const roomRoutes = require('./routes/roomRoutes');
 const app = express();
@@ -28,6 +29,13 @@ const Message = {                           // chatHistory will include elements
   timestamp: "",
   message: ""
 }
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 /** Routes */
 app.use('/room', roomRoutes);
