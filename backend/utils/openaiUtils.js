@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 async function getAnswer(prompt) {
   try {
     const completion = await openai.createCompletion({
-      engine: "text-davinci-003",
+      model: "text-davinci-003",
       prompt: prompt,
       temperature: 0.6,
     });
