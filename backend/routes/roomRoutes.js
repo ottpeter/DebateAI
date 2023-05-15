@@ -3,8 +3,8 @@ const router = express.Router();
 const { hello } = require('../utils/helloUtil');
 
 
-router.get('/', (req, res) => {
-  res.send(hello());
+router.post('/start', (req, res) => {
+  console.log(req.body)
 });
 
 module.exports = router
