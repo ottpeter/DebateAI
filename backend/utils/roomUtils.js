@@ -1,3 +1,5 @@
+const { getAnswer } = require("./openaiUtils");
+
 const Message = {                           // chatHistory will include elements of this
   author: "",
   timestamp: "",
@@ -59,9 +61,23 @@ function generateNextAnswer(roomId, participant) {
 
   console.log("tunerText: ", tunerText);
 
-  // OpenAI call
+  const answer = getAnswer(tunerText);
 
-  // Insert answer into array
+  if (answer.success) {
+    console.log(answer.text);
+
+    const theMessage = Object.assign({}, Message);
+    theMessage.author = participant;
+    theMessage.message = answer.text;
+    theMessage.timestamp = new Date.now();
+
+    // Insert answer into array
+    global.rooms[roomId].chatHistory.push(theMessage)
+
+
+  } else {
+    console.error(answer.error);
+  }
 }
 
 module.exports = {
