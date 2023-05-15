@@ -12,7 +12,7 @@ const httpPort = process.env.HTTP_PORT;
 let privateKey = fs.readFileSync( process.env.SSL_PRIVATE_KEY );
 let certificate = fs.readFileSync( process.env.SSL_CERT );
 
-let rooms = {                               // Rooms with different topics
+global.rooms = {                               // Rooms with different topics
   exampleRoom1: {
     chatHistory: []
   },
@@ -22,12 +22,6 @@ let rooms = {                               // Rooms with different topics
   exampleRoom3: {
     chatHistory: []
   }
-}
-
-const Message = {                           // chatHistory will include elements of this
-  author: "",
-  timestamp: "",
-  message: ""
 }
 
 

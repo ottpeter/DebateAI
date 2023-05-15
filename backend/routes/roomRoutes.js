@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { hello } = require('../utils/helloUtil');
+const { createRoom } = require('../utils/roomUtils');
 
 
 router.post('/start', (req, res) => {
@@ -8,13 +8,14 @@ router.post('/start', (req, res) => {
   const topic = req.body.topic;
 
   // Start room
-  rooms[roomName] = null;
+  let result = createRoom(roomName, topic);
 
-  res.json({
+  if (result === 0) res.json({
     message: "The room was started.",
     roomName: roomName,
     topic: topic
   });
+  else res.json({error: error})
 });
 
 module.exports = router
