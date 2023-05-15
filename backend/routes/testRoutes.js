@@ -4,7 +4,7 @@ const { hello } = require('../utils/helloUtil');
 
 
 router.get('/', (req, res) => {
-  res.send(hello);
+  res.send(hello());
 });
 
 module.exports = router
