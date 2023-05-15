@@ -2,8 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const bodyParser = require('body-parser')
 require('dotenv').config();
-const testRoutes = require('./routes/backup');
+const roomRoutes = require('./routes/roomRoutes');
 const app = express();
 const httpsPort = process.env.HTTPS_PORT;
 const httpPort = process.env.HTTP_PORT;
@@ -11,20 +12,34 @@ const httpPort = process.env.HTTP_PORT;
 let privateKey = fs.readFileSync( process.env.SSL_PRIVATE_KEY );
 let certificate = fs.readFileSync( process.env.SSL_CERT );
 
-let rooms = {                               // Rooms with different topics
-
+global.rooms = {                               // Rooms with different topics
+  // exampleRoom1: {
+  //     chatHistory: []
+  // },
+  // exampleRoom2: {
+  //     chatHistory: []
+  // },
+  // exampleRoom3: {
+  //     chatHistory: []
+  // }
 }
 
-let chatHistory = [];                       // Chat history of the room
-
-const Message = {                           // chatHistory will include elements of this
-  author: "",
-  timestamp: "",
-  message: ""
+global.personalities = {
+  "John" : {
+    name: "John",
+    personality: "Te egy környezetmérnök vagy."
+  }
+  // fred : {}
 }
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 /** Routes */
-app.use('/test', testRoutes);
+app.use('/room', roomRoutes);
 
 /*
 https.createServer({
