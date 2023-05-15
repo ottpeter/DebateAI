@@ -13,17 +13,24 @@ let privateKey = fs.readFileSync( process.env.SSL_PRIVATE_KEY );
 let certificate = fs.readFileSync( process.env.SSL_CERT );
 
 global.rooms = {                               // Rooms with different topics
-  exampleRoom1: {
-    chatHistory: []
-  },
-  exampleRoom2: {
-    chatHistory: []
-  },
-  exampleRoom3: {
-    chatHistory: []
-  }
+  // exampleRoom1: {
+  //     chatHistory: []
+  // },
+  // exampleRoom2: {
+  //     chatHistory: []
+  // },
+  // exampleRoom3: {
+  //     chatHistory: []
+  // }
 }
 
+global.personalities = {
+  "John" : {
+    name: "John",
+    personality: "Te egy környezetmérnök vagy."
+  }
+  // fred : {}
+}
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createRoom } = require('../utils/roomUtils');
+const { createRoom, generateNextAnswer } = require('../utils/roomUtils');
 
 
 router.post('/start', (req, res) => {
@@ -11,11 +11,13 @@ router.post('/start', (req, res) => {
   let result = createRoom(roomName, topic);
 
   if (result === 0) res.json({
-    message: "The room was started.",
+    message: "The room was created.",
     roomName: roomName,
     topic: topic
   });
-  else res.json({error: error})
+  else res.json({error: error});
+
+  generateNextAnswer(roomName, "John")
 });
 
 router.get('/list-all', (req, res) => {
