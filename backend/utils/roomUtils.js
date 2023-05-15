@@ -10,6 +10,8 @@ function createRoom(roomName, topic) {
     rooms[roomName] = {
       topic: topic,
       participants: null,
+      round: 0,
+      maxRounds: 500,
       chatHistory: []
     }
     return 0;
@@ -17,6 +19,19 @@ function createRoom(roomName, topic) {
     console.error("There was an error while trying to create new room: ", error);
     return error;
   }
+}
+
+// Loop generateNextAnswer until we reach the end of the debate
+function loopUntilDone(roomId) {
+  const room = global.rooms[roomId];
+  const names = Object.keys(global.personalities);              // These are the personalities that we have (list of names)
+  
+  do {
+    const index = Math.floor(Math.random() * names.length);
+    const nextParticipant = names[index];
+
+    generateNextAnswer(roomName, nextParticipant);
+  } while (room.round < room.maxRounds);
 }
 
 // Generate a new answer (Message) to a room, from a participant
@@ -39,14 +54,17 @@ function generateNextAnswer(roomId, participant) {
   Te vagy ${participant}. \
   Ez a személyiséged: ${personality}. \
   Ez a vita témája: ${topic}. \
-  Itt látható az elmúlt max 30 üzenet: ${messageList}`;
+  Itt látható az elmúlt 30 üzenet (max): ${messageList}`;
 
   console.log("tunerText: ", tunerText);
 
+  // OpenAI call
+
+  // Insert answer into array
 }
 
 module.exports = {
   createRoom,
-  generateNextAnswer
-
+  generateNextAnswer,
+  loopUntilDone
 }

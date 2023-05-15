@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createRoom, generateNextAnswer } = require('../utils/roomUtils');
+const { createRoom, generateNextAnswer, loopUntilDone } = require('../utils/roomUtils');
 
 
 router.post('/start', (req, res) => {
@@ -13,15 +13,24 @@ router.post('/start', (req, res) => {
   if (result === 0) res.json({
     message: "The room was created.",
     roomName: roomName,
-    topic: topic
+    topic: topic,
   });
   else res.json({error: error});
 
-  generateNextAnswer(roomName, "John")
+  loopUntilDone(roomName);
 });
 
 router.get('/list-all', (req, res) => {
   res.send(rooms);
+});
+
+router.get('/get-messages', (req, res) => {
+  const messages = rooms[req.query.roomId].chatHistory;
+
+  res.json({
+    roomId: req.query.roomId,
+    messages: messages
+  });
 })
 
 module.exports = router
