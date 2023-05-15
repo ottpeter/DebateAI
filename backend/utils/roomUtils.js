@@ -24,7 +24,7 @@ function createRoom(roomName, topic) {
 }
 
 // Loop generateNextAnswer until we reach the end of the debate
-function loopUntilDone(roomId) {
+async function loopUntilDone(roomId) {
   const room = global.rooms[roomId];
   const names = Object.keys(global.personalities);              // These are the personalities that we have (list of names)
   
@@ -33,12 +33,12 @@ function loopUntilDone(roomId) {
     const nextParticipant = names[index];
     global.rooms[roomId].round++;
 
-    generateNextAnswer(roomId, nextParticipant);
+    await generateNextAnswer(roomId, nextParticipant);
   } while (room.round < room.maxRounds);
 }
 
 // Generate a new answer (Message) to a room, from a participant
-function generateNextAnswer(roomId, participant) {
+async function generateNextAnswer(roomId, participant) {
   const personality = personalities[participant].personality;
   const topic = rooms[roomId].topic;
   const history = rooms[roomId].chatHistory;
@@ -61,7 +61,7 @@ function generateNextAnswer(roomId, participant) {
 
   console.log("tunerText: ", tunerText);
 
-  const answer = getAnswer(tunerText);
+  const answer = await getAnswer(tunerText);
 
   if (answer.success) {
     console.log(answer.text);
