@@ -1,6 +1,5 @@
 const openai = require('@openai/api');
-const openAiInstance = new openai(process.env.OPENAI_API_KEY);
-
+const openAiInstance = new openai.OpenAI(process.env.OPENAI_API_KEY);
 
 async function getAnswer(prompt) {
   try {
