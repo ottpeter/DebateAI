@@ -29,6 +29,7 @@ function loopUntilDone(roomId) {
   do {
     const index = Math.floor(Math.random() * names.length);
     const nextParticipant = names[index];
+    global.rooms[roomId].round++;
 
     generateNextAnswer(roomId, nextParticipant);
   } while (room.round < room.maxRounds);
