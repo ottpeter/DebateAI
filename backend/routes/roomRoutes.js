@@ -7,12 +7,14 @@ router.post('/start', (req, res) => {
   const roomName = req.body.roomName;
   const topic = req.body.topic;
 
-  const resultObj = {
-    roomName,
-    topic
-  }
+  // Start room
+  rooms[roomName] = null;
 
-  res.json(resultObj);
+  res.json({
+    message: "The room was started.",
+    roomName: roomName,
+    topic: topic
+  });
 });
 
 module.exports = router
