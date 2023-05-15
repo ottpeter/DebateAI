@@ -69,7 +69,7 @@ async function generateNextAnswer(roomId, participant) {
     const theMessage = Object.assign({}, Message);
     theMessage.author = participant;
     theMessage.message = answer.text;
-    theMessage.timestamp = new Date.now();
+    theMessage.timestamp = Date.now();
 
     // Insert answer into array
     global.rooms[roomId].chatHistory.push(theMessage)
