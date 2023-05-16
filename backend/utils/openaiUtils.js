@@ -11,7 +11,7 @@ async function getAnswer(prompt) {
       model: "text-davinci-003",
       prompt: prompt,
       max_tokens: 2048,
-      temperature: 1.6,
+      temperature: 0.8,
     });
     return {
       success: true,
