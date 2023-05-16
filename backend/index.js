@@ -5,6 +5,7 @@ const https = require('https');
 const bodyParser = require('body-parser')
 require('dotenv').config();
 const roomRoutes = require('./routes/roomRoutes');
+const { loadPersonalities } = require('./utils/personalityUtils');
 const app = express();
 const httpsPort = process.env.HTTPS_PORT;
 const httpPort = process.env.HTTP_PORT;
@@ -25,12 +26,14 @@ global.rooms = {                               // Rooms with different topics
 }
 
 global.personalities = {
-  "John" : {
-    name: "John",
-    personality: "Te egy környezetmérnök vagy."
-  }
+  // "John" : {
+  //  name: "John",
+  //  personality: "Te egy környezetmérnök vagy."
+  // }
   // fred : {}
 }
+
+loadPersonalities();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

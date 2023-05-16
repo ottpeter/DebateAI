@@ -39,7 +39,7 @@ async function loopUntilDone(roomId) {
 
 // Generate a new answer (Message) to a room, from a participant
 async function generateNextAnswer(roomId, participant) {
-  const personality = personalities[participant].personality;
+  const personality = global.personalities[participant].personality;
   const topic = rooms[roomId].topic;
   const history = rooms[roomId].chatHistory;
   let first = 0;
