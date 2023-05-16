@@ -48,7 +48,7 @@ async function generateNextAnswer(roomId, participant) {
   if (history.length === 0) 
     messageList = "(Te kezdesz!)";
   else {
-    if (history.length > 10) first = history.length - 10;
+    if (history.length > 7) first = history.length - 7;
     messageList = history.map((message) => {
       return `${message.author}: "${message.message}"\n`;
     });
@@ -58,7 +58,7 @@ async function generateNextAnswer(roomId, participant) {
   Te vagy ${participant}. \
   Ez a személyiséged: ${personality}. \
   Ez a vita témája: ${topic}. \
-  Itt látható az elmúlt 10 üzenet (max): ${messageList} \
+  Itt látható az elmúlt 7 üzenet (max): ${messageList} \
   Szólj hozzá a vitához, a nevedet ne írd le, csak reagálj arra, amit a többiek eddig írtak (egyes szám első személyben beszéljél!). \
   Az előbbi listában a saját korábbi hozzászólásaidat is látod!`;
 
