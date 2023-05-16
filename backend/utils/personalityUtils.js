@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const Personality = {
   name: "Somebody",
+  color: "#000000",
   personality: "Some personality description"
 }
 
