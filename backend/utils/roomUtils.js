@@ -58,7 +58,8 @@ async function generateNextAnswer(roomId, participant) {
   Ez a személyiséged: ${personality}. \
   Ez a vita témája: ${topic}. \
   Itt látható az elmúlt 30 üzenet (max): ${messageList} \
-  Szólj hozzá a vitához, a nevedet ne írd le, csak reagálj arra, amit a többiek eddig írtak (egyes szám első személyben beszéljél!)`;
+  Szólj hozzá a vitához, a nevedet ne írd le, csak reagálj arra, amit a többiek eddig írtak (egyes szám első személyben beszéljél!). \
+  Az előbbi listában a saját korábbi hozzászólásaidat is látod!`;
 
   console.log("tunerText: ", tunerText);
 
