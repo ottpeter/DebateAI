@@ -7,11 +7,11 @@ const Personality = {
 
 
 function loadPersonalities() {
-  fs.readdir('../personalities', function (err, files) {
+  fs.readdir('./personalities', function (err, files) {
     if (err) return console.error("There was an error reading the personalities directory: ", err);
 
     files.forEach((file, index) => {
-      const fileContent = fs.readFileSync(file, {});
+      const fileContent = fs.readFileSync(`./personalities/${file}`, {});
       const fileObj = JSON.parse(fileContent);
 
       global.personalities[fileObj.name] = fileObj;
