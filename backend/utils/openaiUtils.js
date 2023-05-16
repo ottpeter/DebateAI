@@ -10,6 +10,7 @@ async function getAnswer(prompt) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
+      max_tokens: 4096,
       temperature: 0.6,
     });
     return {
