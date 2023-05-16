@@ -1,4 +1,5 @@
 const { getAnswer } = require("./openaiUtils");
+const fs = require('fs');
 
 const Message = {                           // chatHistory will include elements of this
   author: "",
@@ -76,6 +77,9 @@ async function generateNextAnswer(roomId, participant) {
     // Insert answer into array
     global.rooms[roomId].chatHistory.push(theMessage)
 
+    // SAVE
+    const fd = fs.openSync(`./savedConversations/${roomId}`, "w");
+    fs.writeSync(fd, JSON.stringify(global.rooms[roomId]), 0, 'utf8');
 
   } else {
     console.error(answer.error);
